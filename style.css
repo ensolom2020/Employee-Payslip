@@ -1,0 +1,445 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: #f2f2f2;
+    font-family: Arial, "Tahoma", sans-serif;
+    color: #111;
+}
+
+/* =========================
+   تنسيق كارت تسجيل الدخول في المنتصف
+========================= */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.login-box {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #222222;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 380px; /* تحديد أقصى عرض للنموذج لتجنب امتداده */
+    text-align: center;
+    margin: auto;
+}
+
+/* تنسيق خانات الإدخال داخل الكارت */
+.form-group {
+    margin-bottom: 15px;
+    text-align: right; /* محاذاة النصوص والإنبوت لليمين */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* زر الدخول بكامل عرض الكارت */
+.btn-login {
+    width: 100%;
+    padding: 10px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background-color: #115293;
+}
+
+/* =========================
+   الورقة والجدول
+========================= */
+.payslip {
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    background: white;
+    border: 1px solid #222;
+}
+
+.title {
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: bold;
+    border-bottom: 2px solid #222;
+}
+
+.employee-info {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1.4fr 1.8fr;
+    border-bottom: 2px solid #222;
+}
+
+.info-box {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 2px solid #222;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+}
+
+.info-box:last-child {
+    border-left: none;
+}
+
+.info-label {
+    background: #d3d3d3;
+    font-weight: bold;
+}
+
+.salary-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid #222;
+}
+
+.section-title {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    border-left: 1px solid #222;
+}
+
+.section-title:last-child {
+    border-left: none;
+}
+
+.deductions-title {
+    background: #ff9999;
+}
+
+.earnings-title {
+    background: #dceac8;
+}
+
+.salary-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.salary-table th,
+.salary-table td {
+    border: 1px solid #222;
+    padding: 7px 8px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 19px;
+    height: 48px;
+}
+
+.salary-table th {
+    background: #cfcfcf;
+    font-weight: bold;
+}
+
+.description { width: 28%; }
+.quantity { width: 12%; }
+.amount { width: 18%; }
+
+.salary-table td.amount-cell,
+.salary-table td.quantity-cell {
+    font-weight: bold;
+    direction: ltr;
+}
+
+.total-row {
+    font-weight: bold;
+}
+
+.total-earnings {
+    color: #00a651;
+    font-size: 23px !important;
+}
+
+.total-deductions {
+    color: red;
+    font-size: 23px !important;
+}
+
+.net-salary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 65px;
+}
+
+.net-title {
+    background: #9fc5e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    font-weight: bold;
+    border-left: 1px solid #222;
+}
+
+.net-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: blue;
+    font-size: 25px;
+    font-weight: bold;
+    direction: ltr;
+}
+
+.actions {
+    max-width: 1500px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+button {
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    background: #1976d2;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+button.logout-btn {
+    background: #d32f2f;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 800px) {
+    body { padding: 5px; }
+    .title { font-size: 18px; height: auto; min-height: 55px; padding: 8px; }
+    .employee-info { grid-template-columns: 1fr 1fr; }
+    .info-box { font-size: 15px; min-height: 50px; border-bottom: 1px solid #222; }
+    .salary-sections { grid-template-columns: 1fr 1fr; }
+    .section-title { font-size: 15px; height: 45px; }
+    .salary-table th, .salary-table td { font-size: 13px; padding: 5px 3px; height: 45px; }
+    .net-title, .net-value { font-size: 17px; }
+}
+
+@media print {
+    body { background: white; padding: 0; }
+    .payslip { border: 1px solid #222; }
+    .actions, .login-container { display: none !important; }
+}
+/* =========================
+   تنسيقات شاشة التحميل
+========================= */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-card {
+    text-align: center;
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    border: 2px solid #222;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    width: 90%;
+    max-width: 350px;
+}
+
+.loading-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1976d2;
+    margin-bottom: 15px;
+}
+
+.loading-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #1976d2;
+    /* مدة الحركة 10 ثوانٍ */
+    transition: width 5s linear;
+}
+/* =========================
+   تنسيقات اللوجو وقسم المصمم
+========================= */
+
+/* اللوجو العلوي */
+.company-logo-container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.company-logo {
+    max-width: 140px;
+    height: auto;
+    object-fit: contain;
+}
+
+.title-divider, .footer-divider {
+    border: none;
+    border-top: 1.5px solid #222;
+    margin: 15px 0;
+}
+
+/* قسم بيانات المصمم أسفل الكارت */
+.designer-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.designer-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #1976d2;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.designer-info {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.designer-info p {
+    margin: 3px 0;
+}
+
+.designed-by {
+    font-size: 14px;
+    color: #222;
+}
+
+.designer-info a {
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.designer-info a:hover {
+    text-decoration: underline;
+}
+
+/* تسطير وتحديد خلايا بيانات الموظف بالكامل */
+.employee-info {
+    border: 1px solid #222222 !important;
+    margin-bottom: 10px;
+}
+
+.employee-info .info-box {
+    border: 1px solid #222222 !important;
+    box-sizing: border-box;
+}
+/* =========================
+   تنسيق الهيدر واللوجو
+========================= */
+.payslip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #222;
+    padding: 10px 15px;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.payslip-header .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+    text-align: right;
+    flex: 1;
+}
+
+.header-logo {
+    max-height: 45px;
+    width: auto;
+    object-fit: contain;
+    margin-left: 15px;
+}
+
+/* =========================
+   تنسيقات الشاشات الصغيرة (الموبايل)
+========================= */
+@media screen and (max-width: 600px) {
+    .payslip-header {
+        padding: 8px;
+    }
+
+    /* تصغير حجم خط العنوان ليناسب الموبايل مع اللوجو */
+    .payslip-header .title {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    /* ضبط حجم اللوجو على الموبايل */
+    .header-logo {
+        max-height: 32px;
+        margin-left: 8px;
+    }
+}

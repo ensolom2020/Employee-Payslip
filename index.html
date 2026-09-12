@@ -1,0 +1,393 @@
+<!-- =========================
+     شاشة التحميل (Loading Screen)
+========================= -->
+<div id="loadingScreen" class="loading-overlay">
+    <div class="loading-card">
+        <!-- استبدل my-photo.jpg باسم ملف صورتك -->
+        <img src="assets/Black Suite.jpg" alt="Profile" class="loading-photo">
+        <div class="loading-text">Loading...</div>
+        <div class="progress-bar-container">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+    </div>
+</div>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Payslip | مفردات المرتب</title>
+    <link rel="stylesheet" href="style.css">
+	
+	<!-- سطر إضافة أيقونة التبويب (Favicon) -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+
+<body>
+
+<!-- =========================
+     قسم تسجيل الدخول
+========================= -->
+<div id="loginSection" class="login-wrapper">
+    <div class="login-box">
+        
+        <!-- اللوجو أعلى العنوان -->
+        <div class="company-logo-container">
+            <!-- استبدل logo.png باسم صورة اللوجو الخاص بك -->
+            <img src="assets/Sino-logo.png" alt="Company Logo" class="company-logo">
+        </div>
+
+        <h2 class="login-title">登录 — تسجيل الدخول</h2>
+        <hr class="title-divider">
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="empId">رقم الموظف (编号 - ID)</label>
+                <input type="text" id="empId" placeholder="مثال : كود البصمة" required>
+            </div>
+
+            <div class="form-group">
+                <label for="empPassword">كلمة المرور (密码)</label>
+                <input type="password" id="empPassword" placeholder="••••••••" required>
+            </div>
+
+            <p id="errorMsg" class="error-msg" style="display: none;">بيانات الدخول غير صحيحة / 登录信息不正确</p>
+
+            <button type="submit" class="btn-login">登录 — دخول</button>
+        </form>
+
+        <!-- قسم بيانات المصمم والمطور (أسفل زر الدخول) -->
+        <div class="designer-footer">
+            <hr class="footer-divider">
+            <img src="assets/profile-square-3.jpg" alt="Islam Sabry" class="designer-photo">
+            <div class="designer-info">
+                <p class="designed-by">Designed By: <strong>Islam Sabry Ibrahim</strong></p>
+                <p class="designer-phone">Phone : <a href="https://api.whatsapp.com/send/?phone=201207780921&text&type=phone_number&app_absent=0" target="_blank">+2 01207780921</a></p>
+                <p class="designer-web">Web Site : <a href="https://en-solom.github.io/My-Resume/" target="_blank">Portfolio Link</a></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <!-- =========================
+         ورقة مفردات المرتب
+    ========================= -->
+    <div id="payslipSection" style="display: none;">
+
+        <div class="payslip">
+
+            <!-- العنوان واللوجو -->
+			<div class="payslip-header">
+				<div class="title" id="slipMonth">
+			2026年8月 薪资明细 — مفردات مرتب شهر أغسطس 2026
+			</div>
+			<!-- استبدل logo.png باسم ملف اللوجو لديك -->
+			<img src="assets\Sino-logo.png" alt="Company Logo" class="header-logo">
+</div>
+
+            <!-- بيانات الموظف -->
+            <div class="employee-info">
+                <div class="info-box info-label">ID - 编号</div>
+                <div class="info-box" id="dispId">-</div>
+
+                <div class="info-box info-label">الاسم - 姓名</div>
+                <div class="info-box" id="dispName">-</div>
+
+                <div class="info-box info-label">القسم - 部门</div>
+                <div class="info-box" id="dispDept">-</div>
+
+                <div class="info-box info-label">الوظيفة - 职位</div>
+                <div class="info-box" id="dispJob">-</div>
+            </div>
+
+            <!-- عناوين الأقسام -->
+            <div class="salary-sections">
+                <div class="section-title deductions-title">الاستقطاعات - 扣款项</div>
+                <div class="section-title earnings-title">الاستحقاقات - 应得款项</div>
+            </div>
+
+            <!-- جدول المرتب -->
+            <table class="salary-table">
+                <thead>
+                    <tr>
+                        <th class="amount">القيمة<br>金额</th>
+                        <th class="description">البيان<br>描述</th>
+                        <th class="amount">القيمة<br>金额</th>
+                        <th class="quantity">العدد<br>数量</th>
+                        <th class="description">البيان<br>描述</th>
+                        <th class="amount">القيمة<br>金额</th>
+                        <th class="description">البيان<br>描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- الصف الأول -->
+                    <tr>
+                        <td class="amount-cell" id="valAdvances">-</td>
+                        <td>السلف<br>预支工资</td>
+                        <td class="amount-cell" id="valAbsenceAmount">-</td>
+                        <td class="quantity-cell" id="valAbsenceDays">-</td>
+                        <td>غياب<br>缺席</td>
+                        <td class="amount-cell" id="valBasic">-</td>
+                        <td>الراتب الأساسي<br>基本工资</td>
+                    </tr>
+
+                    <!-- الصف الثاني -->
+                    <tr>
+                        <td class="amount-cell" id="valTax">-</td>
+                        <td>الضريبة<br>就业收入税</td>
+                        <td class="amount-cell" id="valLeavePermAmount">-</td>
+                        <td class="quantity-cell" id="valLeavePermDays">-</td>
+                        <td>إجازة بإذن<br>请假</td>
+                        <td class="amount-cell" id="valBonus">-</td>
+                        <td>حافز الانتظام <br>全勤奖</td>
+                    </tr>
+
+                    <!-- الصف الثالث -->
+                    <tr>
+                        <td class="amount-cell" id="valMedical">-</td>
+                        <td>كشف طبي<br>体检</td>
+                        <td class="amount-cell" id="valAbsenceNoPermAmount">-</td>
+                        <td class="quantity-cell" id="valAbsenceNoPermDays">-</td>
+                        <td>غياب بدون إذن<br>旷工</td>
+                        <td class="amount-cell" id="valMeal">-</td>
+                        <td>مكافأة<br>奖金</td>
+                    </tr>
+
+                    <!-- الصف الرابع -->
+                    <tr>
+                        <td class="amount-cell" id="valNegAdj">-</td>
+                        <td>تسويات سالبة<br>负项调整</td>
+                        <td class="amount-cell" id="valDelaysAmount">-</td>
+                        <td class="quantity-cell" id="valDelaysHours">-</td>
+                        <td>تأخير / ساعة<br>迟到</td>
+                        <td class="amount-cell" id="valPosAdj">-</td>
+                        <td>بدل وجبة<br>餐补</td>
+                    </tr>
+
+                    <!-- الصف الخامس -->
+                    <tr>
+                        <td class="amount-cell" id="valRegLeaveDays">-</td>
+                        <td>إجازة اعتيادي<br>带薪年假</td>
+                        <td class="amount-cell" id="valPenalties">-</td>
+                        <td class="quantity-cell">-</td>
+                        <td>الجزاءات<br>处罚</td>
+                        <td class="amount-cell" id="valTransport">-</td>
+                        <td>تسويات موجبة<br>正项调整</td>
+                    </tr>
+
+                    <!-- الإجماليات -->
+                    <tr class="total-row">
+                        <td colspan="2" class="total-deductions" id="valTotalDeductions">0.00</td>
+                        <td colspan="3">إجمالي الاستقطاعات<br>扣款总额</td>
+                        <td class="total-earnings" id="valTotalEarnings">0.00</td>
+                        <td>إجمالي الاستحقاقات<br>应得总额</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- صافي الراتب -->
+            <div class="net-salary">
+                <div class="net-value" id="valNetSalary">0.00</div>
+                <div class="net-title">صافي الراتب - 净工资</div>
+            </div>
+
+        </div>
+
+        <!-- الأزرار -->
+        <div class="actions">
+            <button onclick="window.print()">🖨 طباعة Payslip</button>
+            <button class="logout-btn" onclick="logout()">🚪 تسجيل الخروج</button>
+        </div>
+
+    </div>
+
+    <!-- استدعاء ملف البيانات -->
+    <script src="data.js"></script>
+<!-- استدعاء ملف البيانات -->
+    <script src="data.js"></script>
+
+    <!-- المنطق والتفاعل -->
+    <script>
+        // --- 1. كود تشغيل شاشة التحميل والشريط ---
+        window.addEventListener("DOMContentLoaded", () => {
+            // البدء في ملء شريط التحميل فور فتح الصفحة
+            setTimeout(() => {
+                document.getElementById("progressBar").style.width = "100%";
+            }, 100);
+
+            // بعد 10 ثوانٍ يتم إخفاء شاشة التحميل
+            setTimeout(() => {
+                const loader = document.getElementById("loadingScreen");
+                loader.style.opacity = "0";
+                loader.style.transition = "opacity 0.5s ease";
+                
+                setTimeout(() => {
+                    loader.style.display = "none";
+                }, 500);
+            }, 5000);
+        });
+
+        // --- 2. باقي الأكواد الخاصة بك ---
+        function fmt(num) {
+            if (!num || num === 0) return "-";
+            return Number(num).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const id = document.getElementById("empId").value.trim();
+            const pass = document.getElementById("empPassword").value.trim();
+            const errorMsg = document.getElementById("errorMsg");
+
+            if (payslipsData[id] && payslipsData[id].password === pass) {
+                errorMsg.style.display = "none";
+                renderPayslip(payslipsData[id]);
+                document.getElementById("loginSection").style.display = "none";
+                document.getElementById("payslipSection").style.display = "block";
+            } else {
+                errorMsg.style.display = "block";
+            }
+        }
+
+        function renderPayslip(d) {
+            document.getElementById("slipMonth").innerText = d.month;
+            document.getElementById("dispId").innerText = d.employeeId;
+            document.getElementById("dispName").innerText = d.name;
+            document.getElementById("dispDept").innerText = d.department;
+            document.getElementById("dispJob").innerText = d.job;
+
+            // الاستحقاقات
+            document.getElementById("valBasic").innerText = fmt(d.basicSalary);
+            document.getElementById("valBonus").innerText = fmt(d.bonus);
+            document.getElementById("valMeal").innerText = fmt(d.mealAllowance);
+            document.getElementById("valPosAdj").innerText = fmt(d.positiveAdjustments);
+            document.getElementById("valTransport").innerText = fmt(d.transportAllowance);
+
+            // الاستقطاعات
+            document.getElementById("valAdvances").innerText = fmt(d.advances);
+            document.getElementById("valTax").innerText = fmt(d.tax);
+            document.getElementById("valMedical").innerText = fmt(d.medicalCheck);
+            document.getElementById("valNegAdj").innerText = fmt(d.negativeAdjustments);
+            document.getElementById("valRegLeaveDays").innerText = fmt(d.regularLeaveDays);
+
+            document.getElementById("valAbsenceDays").innerText = fmt(d.absenceDays);
+            document.getElementById("valAbsenceAmount").innerText = fmt(d.absenceAmount);
+
+            document.getElementById("valLeavePermDays").innerText = fmt(d.leavePermissionDays);
+            document.getElementById("valLeavePermAmount").innerText = fmt(d.leavePermissionAmount);
+
+            document.getElementById("valAbsenceNoPermDays").innerText = fmt(d.absenceNoPermissionDays);
+            document.getElementById("valAbsenceNoPermAmount").innerText = fmt(d.absenceNoPermissionAmount);
+
+            document.getElementById("valDelaysHours").innerText = fmt(d.delaysHours);
+            document.getElementById("valDelaysAmount").innerText = fmt(d.delaysAmount);
+
+            document.getElementById("valPenalties").innerText = fmt(d.penaltiesAmount);
+
+            // الحسابات التلقائية
+            const totalEarnings = (d.basicSalary || 0) + (d.bonus || 0) + (d.mealAllowance || 0) + (d.positiveAdjustments || 0) + (d.transportAllowance || 0);
+            
+            const totalDeductions = (d.advances || 0) + (d.tax || 0) + (d.medicalCheck || 0) + (d.negativeAdjustments || 0) + 
+                                    (d.absenceAmount || 0) + (d.leavePermissionAmount || 0) + (d.absenceNoPermissionAmount || 0) + 
+                                    (d.delaysAmount || 0) + (d.penaltiesAmount || 0);
+
+            const netSalary = totalEarnings - totalDeductions;
+
+            document.getElementById("valTotalEarnings").innerText = fmt(totalEarnings);
+            document.getElementById("valTotalDeductions").innerText = fmt(totalDeductions);
+            document.getElementById("valNetSalary").innerText = fmt(netSalary);
+        }
+
+        function logout() {
+            document.getElementById("payslipSection").style.display = "none";
+            document.getElementById("loginSection").style.display = "flex";
+            document.getElementById("empId").value = "";
+            document.getElementById("empPassword").value = "";
+        }
+    </script>
+
+    <!-- المنطق والتفاعل -->
+    <script>
+        function fmt(num) {
+            if (!num || num === 0) return "-";
+            return Number(num).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const id = document.getElementById("empId").value.trim();
+            const pass = document.getElementById("empPassword").value.trim();
+            const errorMsg = document.getElementById("errorMsg");
+
+            if (payslipsData[id] && payslipsData[id].password === pass) {
+                errorMsg.style.display = "none";
+                renderPayslip(payslipsData[id]);
+                document.getElementById("loginSection").style.display = "none";
+                document.getElementById("payslipSection").style.display = "block";
+            } else {
+                errorMsg.style.display = "block";
+            }
+        }
+
+        function renderPayslip(d) {
+            document.getElementById("slipMonth").innerText = d.month;
+            document.getElementById("dispId").innerText = d.employeeId;
+            document.getElementById("dispName").innerText = d.name;
+            document.getElementById("dispDept").innerText = d.department;
+            document.getElementById("dispJob").innerText = d.job;
+
+            // الاستحقاقات
+            document.getElementById("valBasic").innerText = fmt(d.basicSalary);
+            document.getElementById("valBonus").innerText = fmt(d.bonus);
+            document.getElementById("valMeal").innerText = fmt(d.mealAllowance);
+            document.getElementById("valPosAdj").innerText = fmt(d.positiveAdjustments);
+            document.getElementById("valTransport").innerText = fmt(d.transportAllowance);
+
+            // الاستقطاعات
+            document.getElementById("valAdvances").innerText = fmt(d.advances);
+            document.getElementById("valTax").innerText = fmt(d.tax);
+            document.getElementById("valMedical").innerText = fmt(d.medicalCheck);
+            document.getElementById("valNegAdj").innerText = fmt(d.negativeAdjustments);
+            document.getElementById("valRegLeaveDays").innerText = fmt(d.regularLeaveDays);
+
+            document.getElementById("valAbsenceDays").innerText = fmt(d.absenceDays);
+            document.getElementById("valAbsenceAmount").innerText = fmt(d.absenceAmount);
+
+            document.getElementById("valLeavePermDays").innerText = fmt(d.leavePermissionDays);
+            document.getElementById("valLeavePermAmount").innerText = fmt(d.leavePermissionAmount);
+
+            document.getElementById("valAbsenceNoPermDays").innerText = fmt(d.absenceNoPermissionDays);
+            document.getElementById("valAbsenceNoPermAmount").innerText = fmt(d.absenceNoPermissionAmount);
+
+            document.getElementById("valDelaysHours").innerText = fmt(d.delaysHours);
+            document.getElementById("valDelaysAmount").innerText = fmt(d.delaysAmount);
+
+            document.getElementById("valPenalties").innerText = fmt(d.penaltiesAmount);
+
+            // الحسابات التلقائية
+            const totalEarnings = (d.basicSalary || 0) + (d.bonus || 0) + (d.mealAllowance || 0) + (d.positiveAdjustments || 0) + (d.transportAllowance || 0);
+            
+            const totalDeductions = (d.advances || 0) + (d.tax || 0) + (d.medicalCheck || 0) + (d.negativeAdjustments || 0) + 
+                                    (d.absenceAmount || 0) + (d.leavePermissionAmount || 0) + (d.absenceNoPermissionAmount || 0) + 
+                                    (d.delaysAmount || 0) + (d.penaltiesAmount || 0);
+
+            const netSalary = totalEarnings - totalDeductions;
+
+            document.getElementById("valTotalEarnings").innerText = fmt(totalEarnings);
+            document.getElementById("valTotalDeductions").innerText = fmt(totalDeductions);
+            document.getElementById("valNetSalary").innerText = fmt(netSalary);
+        }
+
+        function logout() {
+		document.getElementById("payslipSection").style.display = "none";
+		// تم تغيير "flex" إلى "" أو "block" ليعود التنسيق الأصلي المعرف في الـ CSS
+		document.getElementById("loginSection").style.display = ""; 
+		document.getElementById("empId").value = "";
+		document.getElementById("empPassword").value = "";
+		}
+    </script>
+</body>
+
+</html>
