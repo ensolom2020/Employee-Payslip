@@ -5,7 +5,7 @@
     <div class="loading-card">
         <!-- استبدل my-photo.jpg باسم ملف صورتك -->
         <img src="assets/Black Suite.jpg" alt="Profile" class="loading-photo">
-        <div class="loading-text">.... Loading</div>
+        <div class="loading-text">... Loading</div>
         <div class="progress-bar-container">
             <div id="progressBar" class="progress-bar"></div>
         </div>
@@ -20,8 +20,11 @@
     <title>Employee Payslip | مفردات المرتب</title>
     <link rel="stylesheet" href="style.css">
 	
-	<!-- سطر إضافة أيقونة التبويب (Favicon) -->
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <!-- سطر إضافة أيقونة التبويب (Favicon) -->
+    <link rel="icon" type="image/png" href="assets/Sino-logo.png">
+
+    <!-- مكتبة تحويل العناصر إلى صورة PNG -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
 <body>
@@ -76,16 +79,16 @@
     ========================= -->
     <div id="payslipSection" style="display: none;">
 
-        <div class="payslip">
+        <div class="payslip" id="payslipCard">
 
             <!-- العنوان واللوجو -->
-			<div class="payslip-header">
-				<div class="title" id="slipMonth">
-			2026年8月 薪资明细 — مفردات مرتب شهر أغسطس 2026
-			</div>
-			<!-- استبدل logo.png باسم ملف اللوجو لديك -->
-			<img src="assets\Sino-logo.png" alt="Company Logo" class="header-logo">
-</div>
+            <div class="payslip-header">
+                <div class="title" id="slipMonth">
+                2026年8月 薪资明细 — مفردات مرتب شهر أغسطس 2026
+                </div>
+                <!-- استبدل logo.png باسم ملف اللوجو لديك -->
+                <img src="assets/Sino-logo.png" alt="Company Logo" class="header-logo">
+            </div>
 
             <!-- بيانات الموظف -->
             <div class="employee-info">
@@ -198,6 +201,7 @@
         <!-- الأزرار -->
         <div class="actions">
             <button onclick="window.print()">🖨 طباعة Payslip</button>
+            <button onclick="downloadAsImage()" style="background-color: #28a745; color: white;">🖼 حفظ كصورة PNG</button>
             <button class="logout-btn" onclick="logout()">🚪 تسجيل الخروج</button>
         </div>
 
@@ -205,19 +209,15 @@
 
     <!-- استدعاء ملف البيانات -->
     <script src="data.js"></script>
-<!-- استدعاء ملف البيانات -->
-    <script src="data.js"></script>
 
     <!-- المنطق والتفاعل -->
     <script>
         // --- 1. كود تشغيل شاشة التحميل والشريط ---
         window.addEventListener("DOMContentLoaded", () => {
-            // البدء في ملء شريط التحميل فور فتح الصفحة
             setTimeout(() => {
                 document.getElementById("progressBar").style.width = "100%";
             }, 100);
 
-            // بعد 10 ثوانٍ يتم إخفاء شاشة التحميل
             setTimeout(() => {
                 const loader = document.getElementById("loadingScreen");
                 loader.style.opacity = "0";
@@ -229,7 +229,7 @@
             }, 5000);
         });
 
-        // --- 2. باقي الأكواد الخاصة بك ---
+        // --- 2. الدوال المساعدة والحسابات ---
         function fmt(num) {
             if (!num || num === 0) return "-";
             return Number(num).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -302,91 +302,27 @@
 
         function logout() {
             document.getElementById("payslipSection").style.display = "none";
-            document.getElementById("loginSection").style.display = "flex";
+            document.getElementById("loginSection").style.display = ""; 
             document.getElementById("empId").value = "";
             document.getElementById("empPassword").value = "";
         }
-    </script>
 
-    <!-- المنطق والتفاعل -->
-    <script>
-        function fmt(num) {
-            if (!num || num === 0) return "-";
-            return Number(num).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        // --- 3. دالة حفظ مفردات المرتب كصورة PNG ---
+        function downloadAsImage() {
+            const payslipElement = document.getElementById("payslipCard");
+            const empId = document.getElementById("dispId").innerText || "Payslip";
+
+            html2canvas(payslipElement, {
+                scale: 2, // لجودة عالية
+                useCORS: true,
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Payslip_${empId}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
         }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const id = document.getElementById("empId").value.trim();
-            const pass = document.getElementById("empPassword").value.trim();
-            const errorMsg = document.getElementById("errorMsg");
-
-            if (payslipsData[id] && payslipsData[id].password === pass) {
-                errorMsg.style.display = "none";
-                renderPayslip(payslipsData[id]);
-                document.getElementById("loginSection").style.display = "none";
-                document.getElementById("payslipSection").style.display = "block";
-            } else {
-                errorMsg.style.display = "block";
-            }
-        }
-
-        function renderPayslip(d) {
-            document.getElementById("slipMonth").innerText = d.month;
-            document.getElementById("dispId").innerText = d.employeeId;
-            document.getElementById("dispName").innerText = d.name;
-            document.getElementById("dispDept").innerText = d.department;
-            document.getElementById("dispJob").innerText = d.job;
-
-            // الاستحقاقات
-            document.getElementById("valBasic").innerText = fmt(d.basicSalary);
-            document.getElementById("valBonus").innerText = fmt(d.bonus);
-            document.getElementById("valMeal").innerText = fmt(d.mealAllowance);
-            document.getElementById("valPosAdj").innerText = fmt(d.positiveAdjustments);
-            document.getElementById("valTransport").innerText = fmt(d.transportAllowance);
-
-            // الاستقطاعات
-            document.getElementById("valAdvances").innerText = fmt(d.advances);
-            document.getElementById("valTax").innerText = fmt(d.tax);
-            document.getElementById("valMedical").innerText = fmt(d.medicalCheck);
-            document.getElementById("valNegAdj").innerText = fmt(d.negativeAdjustments);
-            document.getElementById("valRegLeaveDays").innerText = fmt(d.regularLeaveDays);
-
-            document.getElementById("valAbsenceDays").innerText = fmt(d.absenceDays);
-            document.getElementById("valAbsenceAmount").innerText = fmt(d.absenceAmount);
-
-            document.getElementById("valLeavePermDays").innerText = fmt(d.leavePermissionDays);
-            document.getElementById("valLeavePermAmount").innerText = fmt(d.leavePermissionAmount);
-
-            document.getElementById("valAbsenceNoPermDays").innerText = fmt(d.absenceNoPermissionDays);
-            document.getElementById("valAbsenceNoPermAmount").innerText = fmt(d.absenceNoPermissionAmount);
-
-            document.getElementById("valDelaysHours").innerText = fmt(d.delaysHours);
-            document.getElementById("valDelaysAmount").innerText = fmt(d.delaysAmount);
-
-            document.getElementById("valPenalties").innerText = fmt(d.penaltiesAmount);
-
-            // الحسابات التلقائية
-            const totalEarnings = (d.basicSalary || 0) + (d.bonus || 0) + (d.mealAllowance || 0) + (d.positiveAdjustments || 0) + (d.transportAllowance || 0);
-            
-            const totalDeductions = (d.advances || 0) + (d.tax || 0) + (d.medicalCheck || 0) + (d.negativeAdjustments || 0) + 
-                                    (d.absenceAmount || 0) + (d.leavePermissionAmount || 0) + (d.absenceNoPermissionAmount || 0) + 
-                                    (d.delaysAmount || 0) + (d.penaltiesAmount || 0);
-
-            const netSalary = totalEarnings - totalDeductions;
-
-            document.getElementById("valTotalEarnings").innerText = fmt(totalEarnings);
-            document.getElementById("valTotalDeductions").innerText = fmt(totalDeductions);
-            document.getElementById("valNetSalary").innerText = fmt(netSalary);
-        }
-
-        function logout() {
-		document.getElementById("payslipSection").style.display = "none";
-		// تم تغيير "flex" إلى "" أو "block" ليعود التنسيق الأصلي المعرف في الـ CSS
-		document.getElementById("loginSection").style.display = ""; 
-		document.getElementById("empId").value = "";
-		document.getElementById("empPassword").value = "";
-		}
     </script>
 </body>
 
