@@ -185,14 +185,19 @@ body {
     font-weight: bold;
 }
 
+/* تعديل خط الأخضر (إجمالي الاستحقاقات) ليكون متناسقاً ويمنع التداخل */
 .total-earnings {
     color: #00a651;
-    font-size: 23px !important;
+    font-size: 20px !important;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 .total-deductions {
     color: red;
-    font-size: 23px !important;
+    font-size: 20px !important;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 .net-salary {
@@ -211,12 +216,13 @@ body {
     border-left: 1px solid #222;
 }
 
+/* تكبير وتوضيح الرقم الأزرق (صافي الراتب) */
 .net-value {
     display: flex;
     align-items: center;
     justify-content: center;
     color: blue;
-    font-size: 25px;
+    font-size: 28px !important;
     font-weight: bold;
     direction: ltr;
 }
@@ -247,6 +253,9 @@ button:hover {
     opacity: 0.9;
 }
 
+/* =========================
+   تنسيقات الشاشات المتوسطة
+========================= */
 @media (max-width: 800px) {
     body { padding: 5px; }
     .title { font-size: 18px; height: auto; min-height: 55px; padding: 8px; }
@@ -255,7 +264,9 @@ button:hover {
     .salary-sections { grid-template-columns: 1fr 1fr; }
     .section-title { font-size: 15px; height: 45px; }
     .salary-table th, .salary-table td { font-size: 13px; padding: 5px 3px; height: 45px; }
-    .net-title, .net-value { font-size: 17px; }
+    .total-earnings, .total-deductions { font-size: 14px !important; }
+    .net-title { font-size: 17px; }
+    .net-value { font-size: 20px !important; }
 }
 
 @media print {
@@ -263,6 +274,7 @@ button:hover {
     .payslip { border: 1px solid #222; }
     .actions, .login-container { display: none !important; }
 }
+
 /* =========================
    تنسيقات شاشة التحميل
 ========================= */
@@ -319,14 +331,12 @@ button:hover {
     width: 0%;
     height: 100%;
     background: #1976d2;
-    /* مدة الحركة 10 ثوانٍ */
     transition: width 5s linear;
 }
+
 /* =========================
    تنسيقات اللوجو وقسم المصمم
 ========================= */
-
-/* اللوجو العلوي */
 .company-logo-container {
     text-align: center;
     margin-bottom: 10px;
@@ -344,7 +354,6 @@ button:hover {
     margin: 15px 0;
 }
 
-/* قسم بيانات المصمم أسفل الكارت */
 .designer-footer {
     margin-top: 20px;
     text-align: center;
@@ -385,7 +394,6 @@ button:hover {
     text-decoration: underline;
 }
 
-/* تسطير وتحديد خلايا بيانات الموظف بالكامل */
 .employee-info {
     border: 1px solid #222222 !important;
     margin-bottom: 10px;
@@ -395,6 +403,7 @@ button:hover {
     border: 1px solid #222222 !important;
     box-sizing: border-box;
 }
+
 /* =========================
    تنسيق الهيدر واللوجو
 ========================= */
@@ -424,22 +433,46 @@ button:hover {
 }
 
 /* =========================
-   تنسيقات الشاشات الصغيرة (الموبايل)
+   تنسيقات الشاشات الصغيرة والهواتف (الموبايل)
 ========================= */
 @media screen and (max-width: 600px) {
     .payslip-header {
         padding: 8px;
     }
 
-    /* تصغير حجم خط العنوان ليناسب الموبايل مع اللوجو */
     .payslip-header .title {
         font-size: 12px;
         line-height: 1.4;
     }
 
-    /* ضبط حجم اللوجو على الموبايل */
     .header-logo {
         max-height: 32px;
         margin-left: 8px;
+    }
+
+    /* تعديل حجم الخط في جدول الموبايل لمنع التداخل تماماً */
+    .salary-table th, 
+    .salary-table td {
+        font-size: 11px;
+        padding: 4px 2px;
+    }
+
+    .total-row td {
+        font-size: 10px;
+        padding: 4px 2px;
+    }
+
+    /* ضبط حجم الرقم الأخضر في الموبايل */
+    .total-earnings, .total-deductions {
+        font-size: 11px !important;
+    }
+
+    /* ضبط حجم الرقم الأزرق ليكون واضحاً وبارزاً في الموبايل */
+    .net-value {
+        font-size: 18px !important;
+    }
+
+    .net-title {
+        font-size: 13px;
     }
 }
