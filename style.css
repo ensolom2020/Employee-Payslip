@@ -56,6 +56,14 @@ body {
     font-size: 14px;
 }
 
+/* رسالة الخطأ */
+.error-msg {
+    color: #d32f2f;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 /* زر الدخول بكامل عرض الكارت */
 .btn-login {
     width: 100%;
@@ -75,6 +83,66 @@ body {
 }
 
 /* =========================
+   تنسيقات اللوجو وقسم المصمم في اللوجن
+========================= */
+.company-logo-container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.company-logo {
+    max-width: 140px;
+    height: auto;
+    object-fit: contain;
+}
+
+.title-divider, .footer-divider {
+    border: none;
+    border-top: 1.5px solid #222;
+    margin: 15px 0;
+}
+
+.designer-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.designer-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #1976d2;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.designer-info {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.designer-info p {
+    margin: 3px 0;
+}
+
+.designed-by {
+    font-size: 14px;
+    color: #222;
+}
+
+.designer-info a {
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.designer-info a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
    الورقة والجدول
 ========================= */
 .payslip {
@@ -85,20 +153,58 @@ body {
     border: 1px solid #222;
 }
 
-.title {
-    height: 54px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    font-weight: bold;
-    border-bottom: 2px solid #222;
+/* =========================
+   تنسيق الهيدر واللوجو والخط السفلي (التحديث الجديد)
+========================= */
+.payslip-header-container {
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
 }
 
+.payslip-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px 8px 15px;
+}
+
+.header-logo {
+    max-height: 85px;
+    width: auto;
+    object-fit: contain;
+    margin-left: 15px;
+}
+
+.header-title {
+    flex: 1;
+    font-size: 22px;
+    font-weight: bold;
+    color: #111;
+    text-align: center;
+    border-bottom: none !important;
+}
+
+/* الخط الفاصل الأسود الممتد بعرض الكارت كاملاً تحت اللوجو والعنوان */
+.header-full-line {
+    width: 100%;
+    height: 2px;
+    background-color: #222;
+}
+
+/* =========================
+   تنسيق بيانات الموظف
+========================= */
 .employee-info {
     display: grid;
     grid-template-columns: 1fr 1.2fr 1.4fr 1.8fr;
-    border-bottom: 2px solid #222;
+    border: 1px solid #222222 !important;
+    margin-bottom: 10px;
+}
+
+.employee-info .info-box {
+    border: 1px solid #222222 !important;
+    box-sizing: border-box;
 }
 
 .info-box {
@@ -106,15 +212,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 2px solid #222;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
     padding: 5px;
-}
-
-.info-box:last-child {
-    border-left: none;
 }
 
 .info-label {
@@ -122,6 +223,9 @@ body {
     font-weight: bold;
 }
 
+/* =========================
+   أقسام الراتب والجدول
+========================= */
 .salary-sections {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -185,7 +289,6 @@ body {
     font-weight: bold;
 }
 
-/* تعديل خط الأخضر (إجمالي الاستحقاقات) ليكون متناسقاً ويمنع التداخل */
 .total-earnings {
     color: #00a651;
     font-size: 20px !important;
@@ -216,7 +319,6 @@ body {
     border-left: 1px solid #222;
 }
 
-/* تكبير وتوضيح الرقم الأزرق (صافي الراتب) */
 .net-value {
     display: flex;
     align-items: center;
@@ -227,6 +329,9 @@ body {
     direction: ltr;
 }
 
+/* =========================
+   الأزرار والتحكم
+========================= */
 .actions {
     max-width: 1500px;
     margin: 20px auto;
@@ -251,28 +356,6 @@ button.logout-btn {
 
 button:hover {
     opacity: 0.9;
-}
-
-/* =========================
-   تنسيقات الشاشات المتوسطة
-========================= */
-@media (max-width: 800px) {
-    body { padding: 5px; }
-    .title { font-size: 18px; height: auto; min-height: 55px; padding: 8px; }
-    .employee-info { grid-template-columns: 1fr 1fr; }
-    .info-box { font-size: 15px; min-height: 50px; border-bottom: 1px solid #222; }
-    .salary-sections { grid-template-columns: 1fr 1fr; }
-    .section-title { font-size: 15px; height: 45px; }
-    .salary-table th, .salary-table td { font-size: 13px; padding: 5px 3px; height: 45px; }
-    .total-earnings, .total-deductions { font-size: 14px !important; }
-    .net-title { font-size: 17px; }
-    .net-value { font-size: 20px !important; }
-}
-
-@media print {
-    body { background: white; padding: 0; }
-    .payslip { border: 1px solid #222; }
-    .actions, .login-container { display: none !important; }
 }
 
 /* =========================
@@ -335,122 +418,43 @@ button:hover {
 }
 
 /* =========================
-   تنسيقات اللوجو وقسم المصمم
+   تنسيقات الشاشات المتوسطة
 ========================= */
-.company-logo-container {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.company-logo {
-    max-width: 140px;
-    height: auto;
-    object-fit: contain;
-}
-
-.title-divider, .footer-divider {
-    border: none;
-    border-top: 1.5px solid #222;
-    margin: 15px 0;
-}
-
-.designer-footer {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.designer-photo {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #1976d2;
-    margin-bottom: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-.designer-info {
-    font-size: 13px;
-    color: #444;
-    line-height: 1.6;
-}
-
-.designer-info p {
-    margin: 3px 0;
-}
-
-.designed-by {
-    font-size: 14px;
-    color: #222;
-}
-
-.designer-info a {
-    color: #1976d2;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.designer-info a:hover {
-    text-decoration: underline;
-}
-
-.employee-info {
-    border: 1px solid #222222 !important;
-    margin-bottom: 10px;
-}
-
-.employee-info .info-box {
-    border: 1px solid #222222 !important;
-    box-sizing: border-box;
-}
-
-/* =========================
-   تنسيق الهيدر واللوجو
-========================= */
-.payslip-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #222;
-    padding: 10px 15px;
-    background-color: #fff;
-    margin-bottom: 10px;
-}
-
-.payslip-header .title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #222;
-    text-align: right;
-    flex: 1;
-}
-
-.header-logo {
-    max-height: 45px;
-    width: auto;
-    object-fit: contain;
-    margin-left: 15px;
+@media (max-width: 800px) {
+    body { padding: 5px; }
+    .header-title { font-size: 18px; }
+    .employee-info { grid-template-columns: 1fr 1fr; }
+    .info-box { font-size: 15px; min-height: 50px; }
+    .salary-sections { grid-template-columns: 1fr 1fr; }
+    .section-title { font-size: 15px; height: 45px; }
+    .salary-table th, .salary-table td { font-size: 13px; padding: 5px 3px; height: 45px; }
+    .total-earnings, .total-deductions { font-size: 14px !important; }
+    .net-title { font-size: 17px; }
+    .net-value { font-size: 20px !important; }
 }
 
 /* =========================
    تنسيقات الشاشات الصغيرة والهواتف (الموبايل)
 ========================= */
 @media screen and (max-width: 600px) {
-    .payslip-header {
-        padding: 8px;
+    .payslip-header-content {
+        padding: 8px 10px 4px 10px;
     }
 
-    .payslip-header .title {
-        font-size: 12px;
-        line-height: 1.4;
+    .header-title {
+        font-size: 13px;
+        line-height: 1.3;
     }
 
     .header-logo {
-        max-height: 32px;
-        margin-left: 8px;
+        max-height: 35px;
+        margin-left: 6px;
     }
 
-    /* تعديل حجم الخط في جدول الموبايل لمنع التداخل تماماً */
+    .header-full-line {
+        height: 1.5px;
+    }
+
     .salary-table th, 
     .salary-table td {
         font-size: 11px;
@@ -462,12 +466,10 @@ button:hover {
         padding: 4px 2px;
     }
 
-    /* ضبط حجم الرقم الأخضر في الموبايل */
     .total-earnings, .total-deductions {
         font-size: 11px !important;
     }
 
-    /* ضبط حجم الرقم الأزرق ليكون واضحاً وبارزاً في الموبايل */
     .net-value {
         font-size: 18px !important;
     }
@@ -475,4 +477,13 @@ button:hover {
     .net-title {
         font-size: 13px;
     }
+}
+
+/* =========================
+   تنسيقات الطباعة
+========================= */
+@media print {
+    body { background: white; padding: 0; }
+    .payslip { border: 1px solid #222; }
+    .actions, .login-wrapper, #loadingScreen { display: none !important; }
 }
