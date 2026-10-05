@@ -7,7 +7,7 @@
     <title>Employee Payslip | مفردات المرتب</title>
     <link rel="stylesheet" href="style.css">
     
-    <!-- سطر إضافة أيقونة التبويب (Favicon) -->
+    <!-- أيقونة التبويب -->
     <link rel="icon" type="image/png" href="assets/logo.png">
 
     <!-- مكتبة تحويل العناصر إلى صورة PNG -->
@@ -35,7 +35,6 @@
     <div id="loginSection" class="login-wrapper">
         <div class="login-box">
             
-            <!-- اللوجو أعلى العنوان -->
             <div class="company-logo-container">
                 <img src="assets/Sino-logo.png" alt="Company Logo" class="company-logo">
             </div>
@@ -59,7 +58,6 @@
                 <button type="submit" class="btn-login">登录 — دخول</button>
             </form>
 
-            <!-- قسم بيانات المصمم والمطور (أسفل زر الدخول) -->
             <div class="designer-footer">
                 <hr class="footer-divider">
                 <img src="assets/profile-square-3.jpg" alt="Islam Sabry" class="designer-photo">
@@ -80,7 +78,7 @@
 
         <div class="payslip" id="payslipCard">
 
-            <!-- العنوان واللوجو بالتحديث الجديد -->
+            <!-- العنوان واللوجو -->
             <div class="payslip-header-container">
                 <div class="payslip-header-content">
                     <div class="header-title" id="slipMonth">
@@ -88,7 +86,6 @@
                     </div>
                     <img src="assets/Sino-logo.png" alt="Company Logo" class="header-logo">
                 </div>
-                <!-- الخط الأسود السفلي الممتد بعرض الصفحة كاملاً تحت اللوجو والعنوان -->
                 <div class="header-full-line"></div>
             </div>
 
@@ -107,96 +104,115 @@
                 <div class="info-box" id="dispJob">-</div>
             </div>
 
-            <!-- عناوين الأقسام -->
+            <!-- عناوين الأقسام مطابق للتصميم -->
             <div class="salary-sections">
-                <div class="section-title deductions-title">الاستقطاعات - 扣款项</div>
                 <div class="section-title earnings-title">الاستحقاقات - 应得款项</div>
+                <div class="section-title deductions-title">الاستقطاعات - 扣款项</div>
             </div>
 
-            <!-- جدول المرتب -->
+            <!-- جدول المرتب المطابق تماماً للصورة -->
             <table class="salary-table">
                 <thead>
                     <tr>
-                        <th class="amount">القيمة<br>金额</th>
-                        <th class="description">البيان<br>描述</th>
-                        <th class="amount">القيمة<br>金额</th>
-                        <th class="quantity">العدد<br>数量</th>
-                        <th class="description">البيان<br>描述</th>
-                        <th class="amount">القيمة<br>金额</th>
-                        <th class="description">البيان<br>描述</th>
+                        <!-- العمود 1 و 2 (يمين): الاستحقاقات -->
+                        <th class="description">البيان 描述</th>
+                        <th class="amount">القيمة 金额</th>
+                        
+                        <!-- العمود 3 و 4 و 5 (وسط): الغياب والتأخيرات -->
+                        <th class="description">البيان 描述</th>
+                        <th class="quantity">العدد 数量</th>
+                        <th class="amount">القيمة 金额</th>
+
+                        <!-- العمود 6 و 7 (يسار): الاستقطاعات المباشرة -->
+                        <th class="description">البيان 描述</th>
+                        <th class="amount">القيمة 金额</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- الصف الأول -->
                     <tr>
-                        <td class="amount-cell" id="valAdvances">-</td>
-                        <td>السلف<br>预支工资</td>
-                        <td class="amount-cell" id="valAbsenceAmount">-</td>
-                        <td class="quantity-cell" id="valAbsenceDays">-</td>
-                        <td>غياب<br>缺席</td>
+                        <td>الراتب الأساسي 基本工资</td>
                         <td class="amount-cell" id="valBasic">-</td>
-                        <td>الراتب الأساسي<br>基本工资</td>
+
+                        <td>غياب 缺席</td>
+                        <td class="quantity-cell" id="valAbsenceDays">-</td>
+                        <td class="amount-cell" id="valAbsenceAmount">-</td>
+
+                        <td>السلف 预支工资</td>
+                        <td class="amount-cell" id="valAdvances">-</td>
                     </tr>
 
                     <!-- الصف الثاني -->
                     <tr>
-                        <td class="amount-cell" id="valTax">-</td>
-                        <td>الضريبة<br>就业收入税</td>
-                        <td class="amount-cell" id="valLeavePermAmount">-</td>
-                        <td class="quantity-cell" id="valLeavePermDays">-</td>
-                        <td>إجازة بإذن<br>请假</td>
+                        <td>مكافأة 奖金</td>
                         <td class="amount-cell" id="valBonus">-</td>
-                        <td>حافز الانتظام <br>全勤奖</td>
+
+                        <td>غياب بإذن 请假</td>
+                        <td class="quantity-cell" id="valLeavePermDays">-</td>
+                        <td class="amount-cell" id="valLeavePermAmount">-</td>
+
+                        <td>الضريبة 就业收益税</td>
+                        <td class="amount-cell" id="valTax">-</td>
                     </tr>
 
                     <!-- الصف الثالث -->
                     <tr>
-                        <td class="amount-cell" id="valMedical">-</td>
-                        <td>كشف طبي<br>体检</td>
-                        <td class="amount-cell" id="valAbsenceNoPermAmount">-</td>
+                        <td>حافز الانتظام 全勤奖</td>
+                        <td class="amount-cell" id="valAttendanceBonus">-</td>
+
+                        <td>غياب بدون إذن 旷工</td>
                         <td class="quantity-cell" id="valAbsenceNoPermDays">-</td>
-                        <td>غياب بدون إذن<br>旷工</td>
-                        <td class="amount-cell" id="valMeal">-</td>
-                        <td>مكافأة<br>奖金</td>
+                        <td class="amount-cell" id="valAbsenceNoPermAmount">-</td>
+
+                        <td>كشف طبي 体检</td>
+                        <td class="amount-cell" id="valMedical">-</td>
                     </tr>
 
                     <!-- الصف الرابع -->
                     <tr>
-                        <td class="amount-cell" id="valNegAdj">-</td>
-                        <td>تسويات سالبة<br>负项调整</td>
-                        <td class="amount-cell" id="valDelaysAmount">-</td>
+                        <td>بدل وجبة 餐补</td>
+                        <td class="amount-cell" id="valMeal">-</td>
+
+                        <td>تأخيرات/ساعة 迟到</td>
                         <td class="quantity-cell" id="valDelaysHours">-</td>
-                        <td>تأخير / ساعة<br>迟到</td>
-                        <td class="amount-cell" id="valPosAdj">-</td>
-                        <td>بدل وجبة<br>餐补</td>
+                        <td class="amount-cell" id="valDelaysAmount">-</td>
+
+                        <td>تسويات سالبة 负项调整</td>
+                        <td class="amount-cell" id="valNegAdj">-</td>
                     </tr>
 
                     <!-- الصف الخامس -->
                     <tr>
-                        <td class="amount-cell" id="valRegLeaveDays">-</td>
-                        <td>إجازة اعتيادي<br>带薪年假</td>
-                        <td class="amount-cell" id="valPenalties">-</td>
+                        <td>تسويات موجبة 正项调整</td>
+                        <td class="amount-cell" id="valPosAdj">-</td>
+
+                        <td>الجزاءات 处罚</td>
                         <td class="quantity-cell">-</td>
-                        <td>الجزاءات<br>处罚</td>
-                        <td class="amount-cell" id="valTransport">-</td>
-                        <td>تسويات موجبة<br>正项调整</td>
+                        <td class="amount-cell" id="valPenalties">-</td>
+
+                        <td>إجازة اعتيادي 带薪年假</td>
+                        <td class="amount-cell" id="valRegLeaveDays">-</td>
                     </tr>
 
-                    <!-- الإجماليات -->
+                    <!-- الصف السادس: إجمالي الاستحقاقات وإجمالي الاستقطاعات -->
                     <tr class="total-row">
-                        <td colspan="2" class="total-deductions" id="valTotalDeductions">0.00</td>
-                        <td colspan="3">إجمالي الاستقطاعات<br>扣款总额</td>
+                        <td>إجمالي الاستحقاقات 应得总额</td>
                         <td class="total-earnings" id="valTotalEarnings">0.00</td>
-                        <td>إجمالي الاستحقاقات<br>应得总额</td>
+
+                        <td colspan="3">إجمالي الاستقطاعات 扣款总额</td>
+                        <td colspan="2" class="total-deductions" id="valTotalDeductions">0.00</td>
+                    </tr>
+
+                    <!-- الصف السابع: طريقة الدفع وصافي الراتب -->
+                    <tr class="net-row">
+                        <td style="background-color: #00b050; color: white; font-weight: bold;">Payment Method - 支付方式</td>
+                        <td id="dispPaymentMethod" style="font-weight: bold; font-size: 15px;">Bank</td>
+
+                        <td colspan="3" style="background-color: #bdd7ee; color: black; font-weight: bold;">صافي الراتب - 净工资</td>
+                        <td colspan="2" id="valNetSalary" style="font-size: 24px; font-weight: bold; color: blue;">0.00</td>
                     </tr>
                 </tbody>
             </table>
-
-            <!-- صافي الراتب -->
-            <div class="net-salary">
-                <div class="net-value" id="valNetSalary">0.00</div>
-                <div class="net-title">صافي الراتب - 净工资</div>
-            </div>
 
         </div>
 
@@ -214,26 +230,29 @@
 
     <!-- المنطق والتفاعل -->
     <script>
-        // --- 1. كود تشغيل شاشة التحميل والشريط ---
+        // --- 1. كود تشغيل شاشة التحميل ---
         window.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
-                document.getElementById("progressBar").style.width = "100%";
+                const pb = document.getElementById("progressBar");
+                if (pb) pb.style.width = "100%";
             }, 100);
 
             setTimeout(() => {
                 const loader = document.getElementById("loadingScreen");
-                loader.style.opacity = "0";
-                loader.style.transition = "opacity 0.5s ease";
-                
-                setTimeout(() => {
-                    loader.style.display = "none";
-                }, 500);
-            }, 5000);
+                if (loader) {
+                    loader.style.opacity = "0";
+                    loader.style.transition = "opacity 0.5s ease";
+                    setTimeout(() => {
+                        loader.style.display = "none";
+                    }, 500);
+                }
+            }, 3000);
         });
 
-        // --- 2. الدوال المساعدة والحسابات ---
+        // --- 2. تنسيق الأرقام ---
         function fmt(num) {
-            if (!num || num === 0) return "-";
+            if (num === undefined || num === null || num === "") return "-";
+            if (Number(num) === 0) return "-";
             return Number(num).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
@@ -243,7 +262,7 @@
             const pass = document.getElementById("empPassword").value.trim();
             const errorMsg = document.getElementById("errorMsg");
 
-            if (payslipsData[id] && payslipsData[id].password === pass) {
+            if (typeof payslipsData !== 'undefined' && payslipsData[id] && payslipsData[id].password === pass) {
                 errorMsg.style.display = "none";
                 renderPayslip(payslipsData[id]);
                 document.getElementById("loginSection").style.display = "none";
@@ -254,26 +273,23 @@
         }
 
         function renderPayslip(d) {
-            document.getElementById("slipMonth").innerText = d.month;
-            document.getElementById("dispId").innerText = d.employeeId;
-            document.getElementById("dispName").innerText = d.name;
-            document.getElementById("dispDept").innerText = d.department;
-            document.getElementById("dispJob").innerText = d.job;
+            document.getElementById("slipMonth").innerText = d.month || "";
+            document.getElementById("dispId").innerText = d.employeeId || "-";
+            document.getElementById("dispName").innerText = d.name || "-";
+            document.getElementById("dispDept").innerText = d.department || "-";
+            document.getElementById("dispJob").innerText = d.job || "-";
 
-            // الاستحقاقات
+            // طريقة الدفع
+            document.getElementById("dispPaymentMethod").innerText = d.paymentMethod || "Bank";
+
+            // 1. الاستحقاقات
             document.getElementById("valBasic").innerText = fmt(d.basicSalary);
             document.getElementById("valBonus").innerText = fmt(d.bonus);
+            document.getElementById("valAttendanceBonus").innerText = fmt(d.attendanceBonus || d.bonus);
             document.getElementById("valMeal").innerText = fmt(d.mealAllowance);
             document.getElementById("valPosAdj").innerText = fmt(d.positiveAdjustments);
-            document.getElementById("valTransport").innerText = fmt(d.transportAllowance);
 
-            // الاستقطاعات
-            document.getElementById("valAdvances").innerText = fmt(d.advances);
-            document.getElementById("valTax").innerText = fmt(d.tax);
-            document.getElementById("valMedical").innerText = fmt(d.medicalCheck);
-            document.getElementById("valNegAdj").innerText = fmt(d.negativeAdjustments);
-            document.getElementById("valRegLeaveDays").innerText = fmt(d.regularLeaveDays);
-
+            // 2. الغياب والتأخيرات (الوسط)
             document.getElementById("valAbsenceDays").innerText = fmt(d.absenceDays);
             document.getElementById("valAbsenceAmount").innerText = fmt(d.absenceAmount);
 
@@ -288,8 +304,15 @@
 
             document.getElementById("valPenalties").innerText = fmt(d.penaltiesAmount);
 
-            // الحسابات التلقائية
-            const totalEarnings = (d.basicSalary || 0) + (d.bonus || 0) + (d.mealAllowance || 0) + (d.positiveAdjustments || 0) + (d.transportAllowance || 0);
+            // 3. الاستقطاعات المباشرة (اليسار)
+            document.getElementById("valAdvances").innerText = fmt(d.advances);
+            document.getElementById("valTax").innerText = fmt(d.tax);
+            document.getElementById("valMedical").innerText = fmt(d.medicalCheck);
+            document.getElementById("valNegAdj").innerText = fmt(d.negativeAdjustments);
+            document.getElementById("valRegLeaveDays").innerText = fmt(d.regularLeaveDays);
+
+            // الحسابات
+            const totalEarnings = (d.basicSalary || 0) + (d.bonus || 0) + (d.attendanceBonus || 0) + (d.mealAllowance || 0) + (d.positiveAdjustments || 0);
             
             const totalDeductions = (d.advances || 0) + (d.tax || 0) + (d.medicalCheck || 0) + (d.negativeAdjustments || 0) + 
                                     (d.absenceAmount || 0) + (d.leavePermissionAmount || 0) + (d.absenceNoPermissionAmount || 0) + 
@@ -297,9 +320,9 @@
 
             const netSalary = totalEarnings - totalDeductions;
 
-            document.getElementById("valTotalEarnings").innerText = fmt(totalEarnings);
-            document.getElementById("valTotalDeductions").innerText = fmt(totalDeductions);
-            document.getElementById("valNetSalary").innerText = fmt(netSalary);
+            document.getElementById("valTotalEarnings").innerText = Number(totalEarnings).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById("valTotalDeductions").innerText = Number(totalDeductions).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById("valNetSalary").innerText = Number(netSalary).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
         function logout() {
@@ -315,7 +338,7 @@
             const empId = document.getElementById("dispId").innerText || "Payslip";
 
             html2canvas(payslipElement, {
-                scale: 2, // لجودة عالية
+                scale: 2,
                 useCORS: true,
                 logging: false
             }).then(canvas => {
