@@ -104,13 +104,13 @@
                 <div class="info-box" id="dispJob">-</div>
             </div>
 
-            <!-- عناوين الأقسام مطابق للتصميم -->
+            <!-- عناوين الأقسام -->
             <div class="salary-sections">
                 <div class="section-title earnings-title">الاستحقاقات - 应得款项</div>
                 <div class="section-title deductions-title">الاستقطاعات - 扣款项</div>
             </div>
 
-            <!-- جدول المرتب المطابق تماماً للصورة -->
+            <!-- جدول المرتب -->
             <table class="salary-table">
                 <thead>
                     <tr>
@@ -249,11 +249,16 @@
             }, 3000);
         });
 
-        // --- 2. تنسيق الأرقام ---
-        function fmt(num) {
+        // --- 2. دالة تنسيق الأرقام والكميات ---
+        function fmt(num, isQuantity = false) {
             if (num === undefined || num === null || num === "") return "-";
-            if (Number(num) === 0) return "-";
-            return Number(num).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const val = Number(num);
+            if (isNaN(val) || val === 0) return "-";
+            
+            if (isQuantity) {
+                return val.toString();
+            }
+            return val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
         function handleLogin(e) {
@@ -285,21 +290,21 @@
             // 1. الاستحقاقات
             document.getElementById("valBasic").innerText = fmt(d.basicSalary);
             document.getElementById("valBonus").innerText = fmt(d.bonus);
-            document.getElementById("valAttendanceBonus").innerText = fmt(d.attendanceBonus || d.bonus);
+            document.getElementById("valAttendanceBonus").innerText = fmt(d.attendanceBonus);
             document.getElementById("valMeal").innerText = fmt(d.mealAllowance);
             document.getElementById("valPosAdj").innerText = fmt(d.positiveAdjustments);
 
             // 2. الغياب والتأخيرات (الوسط)
-            document.getElementById("valAbsenceDays").innerText = fmt(d.absenceDays);
+            document.getElementById("valAbsenceDays").innerText = fmt(d.absenceDays, true);
             document.getElementById("valAbsenceAmount").innerText = fmt(d.absenceAmount);
 
-            document.getElementById("valLeavePermDays").innerText = fmt(d.leavePermissionDays);
+            document.getElementById("valLeavePermDays").innerText = fmt(d.leavePermissionDays, true);
             document.getElementById("valLeavePermAmount").innerText = fmt(d.leavePermissionAmount);
 
-            document.getElementById("valAbsenceNoPermDays").innerText = fmt(d.absenceNoPermissionDays);
+            document.getElementById("valAbsenceNoPermDays").innerText = fmt(d.absenceNoPermissionDays, true);
             document.getElementById("valAbsenceNoPermAmount").innerText = fmt(d.absenceNoPermissionAmount);
 
-            document.getElementById("valDelaysHours").innerText = fmt(d.delaysHours);
+            document.getElementById("valDelaysHours").innerText = fmt(d.delaysHours, true);
             document.getElementById("valDelaysAmount").innerText = fmt(d.delaysAmount);
 
             document.getElementById("valPenalties").innerText = fmt(d.penaltiesAmount);
@@ -309,20 +314,30 @@
             document.getElementById("valTax").innerText = fmt(d.tax);
             document.getElementById("valMedical").innerText = fmt(d.medicalCheck);
             document.getElementById("valNegAdj").innerText = fmt(d.negativeAdjustments);
-            document.getElementById("valRegLeaveDays").innerText = fmt(d.regularLeaveDays);
+            document.getElementById("valRegLeaveDays").innerText = fmt(d.regularLeaveDays, true);
 
             // الحسابات
-            const totalEarnings = (d.basicSalary || 0) + (d.bonus || 0) + (d.attendanceBonus || 0) + (d.mealAllowance || 0) + (d.positiveAdjustments || 0);
+            const totalEarnings = (Number(d.basicSalary) || 0) + 
+                                  (Number(d.bonus) || 0) + 
+                                  (Number(d.attendanceBonus) || 0) + 
+                                  (Number(d.mealAllowance) || 0) + 
+                                  (Number(d.positiveAdjustments) || 0);
             
-            const totalDeductions = (d.advances || 0) + (d.tax || 0) + (d.medicalCheck || 0) + (d.negativeAdjustments || 0) + 
-                                    (d.absenceAmount || 0) + (d.leavePermissionAmount || 0) + (d.absenceNoPermissionAmount || 0) + 
-                                    (d.delaysAmount || 0) + (d.penaltiesAmount || 0);
+            const totalDeductions = (Number(d.advances) || 0) + 
+                                    (Number(d.tax) || 0) + 
+                                    (Number(d.medicalCheck) || 0) + 
+                                    (Number(d.negativeAdjustments) || 0) + 
+                                    (Number(d.absenceAmount) || 0) + 
+                                    (Number(d.leavePermissionAmount) || 0) + 
+                                    (Number(d.absenceNoPermissionAmount) || 0) + 
+                                    (Number(d.delaysAmount) || 0) + 
+                                    (Number(d.penaltiesAmount) || 0);
 
             const netSalary = totalEarnings - totalDeductions;
 
-            document.getElementById("valTotalEarnings").innerText = Number(totalEarnings).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            document.getElementById("valTotalDeductions").innerText = Number(totalDeductions).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            document.getElementById("valNetSalary").innerText = Number(netSalary).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById("valTotalEarnings").innerText = totalEarnings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById("valTotalDeductions").innerText = totalDeductions.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById("valNetSalary").innerText = netSalary.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
         function logout() {
