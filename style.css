@@ -1,3 +1,18 @@
+/* =========================================
+   1. المتغيرات العامة وإعادة الضبط (Reset)
+========================================= */
+:root {
+    --primary-color: #1976d2;
+    --primary-hover: #115293;
+    --danger-color: #d32f2f;
+    --success-color: #00c853;
+    --bg-main: #f2f2f2;
+    --bg-card: #ffffff;
+    --border-color: #222222;
+    --text-main: #111111;
+    --font-family: Arial, "Tahoma", sans-serif;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -5,39 +20,38 @@
 body {
     margin: 0;
     padding: 20px;
-    background: #f2f2f2;
-    font-family: Arial, "Tahoma", sans-serif;
-    color: #111;
+    background: var(--bg-main);
+    font-family: var(--font-family);
+    color: var(--text-main);
+    direction: rtl; /* تعيين الاتجاه الافتراضي للغة العربية */
 }
 
-/* =========================
-   تنسيق كارت تسجيل الدخول في المنتصف
-========================= */
+/* =========================================
+   2. الشاشات كروت تسجيل الدخول والتحميل
+========================================= */
 .login-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-    box-sizing: border-box;
 }
 
 .login-box {
-    background: #ffffff;
+    background: var(--bg-card);
     padding: 30px;
     border-radius: 10px;
-    border: 2px solid #222222;
+    border: 2px solid var(--border-color);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 380px; /* تحديد أقصى عرض للنموذج لتجنب امتداده */
+    max-width: 380px;
     text-align: center;
     margin: auto;
 }
 
-/* تنسيق خانات الإدخال داخل الكارت */
 .form-group {
     margin-bottom: 15px;
-    text-align: right; /* محاذاة النصوص والإنبوت لليمين */
+    text-align: right;
 }
 
 .form-group label {
@@ -52,39 +66,36 @@ body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
     font-size: 14px;
+    font-family: inherit;
 }
 
-/* رسالة الخطأ */
 .error-msg {
-    color: #d32f2f;
+    color: var(--danger-color);
     font-size: 13px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-/* زر الدخول بكامل عرض الكارت */
 .btn-login {
     width: 100%;
     padding: 10px;
-    background-color: #1976d2;
-    color: white;
+    background-color: var(--primary-color);
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.2s ease;
 }
 
 .btn-login:hover {
-    background-color: #115293;
+    background-color: var(--primary-hover);
 }
 
-/* =========================
-   تنسيقات اللوجو وقسم المصمم في اللوجن
-========================= */
+/* شعار الشركة وقسم المصمم */
 .company-logo-container {
     text-align: center;
     margin-bottom: 10px;
@@ -96,9 +107,10 @@ body {
     object-fit: contain;
 }
 
-.title-divider, .footer-divider {
+.title-divider, 
+.footer-divider {
     border: none;
-    border-top: 1.5px solid #222;
+    border-top: 1.5px solid var(--border-color);
     margin: 15px 0;
 }
 
@@ -112,14 +124,14 @@ body {
     height: 70px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #1976d2;
+    border: 2px solid var(--primary-color);
     margin-bottom: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .designer-info {
     font-size: 13px;
-    color: #444;
+    color: #444444;
     line-height: 1.6;
 }
 
@@ -129,11 +141,11 @@ body {
 
 .designed-by {
     font-size: 14px;
-    color: #222;
+    color: var(--border-color);
 }
 
 .designer-info a {
-    color: #1976d2;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: bold;
 }
@@ -142,23 +154,77 @@ body {
     text-decoration: underline;
 }
 
-/* =========================
-   الورقة والجدول
-========================= */
+/* شاشة التحميل */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-card {
+    text-align: center;
+    background: var(--bg-card);
+    padding: 30px 40px;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 350px;
+}
+
+.loading-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.loading-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 5s linear;
+}
+
+/* =========================================
+   3. مفصل الراتب (Payslip) والجدول
+========================================= */
 .payslip {
     width: 100%;
     max-width: 1500px;
     margin: auto;
-    background: white;
-    border: 1px solid #222;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
 }
 
-/* =========================
-   تنسيق الهيدر واللوجو والخط السفلي (التحديث الجديد)
-========================= */
 .payslip-header-container {
     width: 100%;
-    background-color: #fff;
+    background-color: var(--bg-card);
     margin-bottom: 10px;
 }
 
@@ -180,31 +246,27 @@ body {
     flex: 1;
     font-size: 22px;
     font-weight: bold;
-    color: #111;
+    color: var(--text-main);
     text-align: center;
     border-bottom: none !important;
 }
 
-/* الخط الفاصل الأسود الممتد بعرض الكارت كاملاً تحت اللوجو والعنوان */
 .header-full-line {
     width: 100%;
     height: 2px;
-    background-color: #222;
+    background-color: var(--border-color);
 }
 
-/* =========================
-   تنسيق بيانات الموظف
-========================= */
+/* بيانات الموظف */
 .employee-info {
     display: grid;
     grid-template-columns: 1fr 1.2fr 1.4fr 1.8fr;
-    border: 1px solid #222222 !important;
+    border: 1px solid var(--border-color) !important;
     margin-bottom: 10px;
 }
 
 .employee-info .info-box {
-    border: 1px solid #222222 !important;
-    box-sizing: border-box;
+    border: 1px solid var(--border-color) !important;
 }
 
 .info-box {
@@ -223,13 +285,11 @@ body {
     font-weight: bold;
 }
 
-/* =========================
-   أقسام الراتب والجدول
-========================= */
+/* أقسام جدول الراتب */
 .salary-sections {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .section-title {
@@ -239,7 +299,7 @@ body {
     justify-content: center;
     font-size: 22px;
     font-weight: bold;
-    border-left: 1px solid #222;
+    border-left: 1px solid var(--border-color);
 }
 
 .section-title:last-child {
@@ -262,7 +322,7 @@ body {
 
 .salary-table th,
 .salary-table td {
-    border: 1px solid #222;
+    border: 1px solid var(--border-color);
     padding: 7px 8px;
     text-align: center;
     vertical-align: middle;
@@ -297,41 +357,70 @@ body {
 }
 
 .total-deductions {
-    color: red;
+    color: var(--danger-color);
     font-size: 20px !important;
     font-weight: bold;
     white-space: nowrap;
 }
 
-.net-salary {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 65px;
+/* =========================================
+   4. شريط صافي الراتب وطريقة الدفع
+========================================= */
+.net-salary-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-top: 1px solid var(--border-color);
+    font-weight: bold;
+    text-align: center;
+    align-items: stretch;
+    min-height: 55px;
+}
+
+.net-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 5px;
+    border-left: 1px solid var(--border-color);
+}
+
+.net-box:last-child {
+    border-left: none;
+}
+
+.payment-title {
+    width: 32%;
+    background-color: var(--success-color);
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.payment-value {
+    width: 18%;
+    background-color: var(--bg-card);
+    color: #000000;
+    font-size: 20px;
 }
 
 .net-title {
-    background: #9fc5e8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 23px;
-    font-weight: bold;
-    border-left: 1px solid #222;
+    width: 25%;
+    background-color: #b0bec5;
+    color: #000000;
+    font-size: 22px;
 }
 
 .net-value {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: blue;
-    font-size: 28px !important;
-    font-weight: bold;
+    width: 25%;
+    background-color: var(--bg-card);
+    color: #0000ff;
+    font-size: 28px !important; /* يمكنك زيادة الرقم هنا لـ 30px أو 32px مثلاً حسب الحجم المطلوب */
     direction: ltr;
 }
 
-/* =========================
-   الأزرار والتحكم
-========================= */
+/* =========================================
+   5. أزرار التحكم والعمليات
+========================================= */
 .actions {
     max-width: 1500px;
     margin: 20px auto;
@@ -344,98 +433,69 @@ button {
     border: none;
     padding: 12px 25px;
     border-radius: 6px;
-    background: #1976d2;
-    color: white;
+    background: var(--primary-color);
+    color: #ffffff;
     font-size: 17px;
+    font-family: inherit;
     cursor: pointer;
+    transition: opacity 0.2s ease;
 }
 
 button.logout-btn {
-    background: #d32f2f;
+    background: var(--danger-color);
 }
 
 button:hover {
     opacity: 0.9;
 }
 
-/* =========================
-   تنسيقات شاشة التحميل
-========================= */
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #f2f2f2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
+/* =========================================
+   6. التصميم التفاعلي (Responsive Web Design)
+========================================= */
 
-.loading-card {
-    text-align: center;
-    background: white;
-    padding: 30px 40px;
-    border-radius: 12px;
-    border: 2px solid #222;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    width: 90%;
-    max-width: 350px;
-}
-
-.loading-photo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #1976d2;
-    margin-bottom: 15px;
-}
-
-.loading-text {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-}
-
-.progress-bar-container {
-    width: 100%;
-    height: 10px;
-    background: #e0e0e0;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.progress-bar {
-    width: 0%;
-    height: 100%;
-    background: #1976d2;
-    transition: width 5s linear;
-}
-
-/* =========================
-   تنسيقات الشاشات المتوسطة
-========================= */
+/* الشاشات المتوسطة (الأجهزة اللوحية) */
 @media (max-width: 800px) {
-    body { padding: 5px; }
-    .header-title { font-size: 18px; }
-    .employee-info { grid-template-columns: 1fr 1fr; }
-    .info-box { font-size: 15px; min-height: 50px; }
-    .salary-sections { grid-template-columns: 1fr 1fr; }
-    .section-title { font-size: 15px; height: 45px; }
-    .salary-table th, .salary-table td { font-size: 13px; padding: 5px 3px; height: 45px; }
-    .total-earnings, .total-deductions { font-size: 14px !important; }
-    .net-title { font-size: 17px; }
-    .net-value { font-size: 20px !important; }
+    body { 
+        padding: 5px; 
+    }
+    .header-title { 
+        font-size: 18px; 
+    }
+    .employee-info { 
+        grid-template-columns: 1fr 1fr; 
+    }
+    .info-box { 
+        font-size: 15px; 
+        min-height: 50px; 
+    }
+    .salary-sections { 
+        grid-template-columns: 1fr 1fr; 
+    }
+    .section-title { 
+        font-size: 15px; 
+        height: 45px; 
+    }
+    .salary-table th, 
+    .salary-table td { 
+        font-size: 13px; 
+        padding: 5px 3px; 
+        height: 45px; 
+    }
+    .total-earnings, 
+    .total-deductions { 
+        font-size: 14px !important; 
+    }
+    .payment-title, 
+    .payment-value, 
+    .net-title { 
+        font-size: 14px; 
+    }
+    .net-value { 
+        font-size: 30px !important; 
+    }
 }
 
-/* =========================
-   تنسيقات الشاشات الصغيرة والهواتف (الموبايل)
-========================= */
+/* الشاشات الصغيرة (الموبايل) */
 @media screen and (max-width: 600px) {
     .payslip-header-content {
         padding: 8px 10px 4px 10px;
@@ -466,24 +526,42 @@ button:hover {
         padding: 4px 2px;
     }
 
-    .total-earnings, .total-deductions {
+    .total-earnings, 
+    .total-deductions {
         font-size: 11px !important;
     }
 
-    .net-value {
-        font-size: 18px !important;
+    .net-salary-container {
+        min-height: 40px;
     }
 
+    .payment-title, 
+    .payment-value, 
     .net-title {
-        font-size: 13px;
+        font-size: 11px;
+        padding: 4px 2px;
+    }
+
+    .net-value {
+        font-size: 14px !important;
+        padding: 4px 2px;
     }
 }
 
-/* =========================
-   تنسيقات الطباعة
-========================= */
+/* =========================================
+   7. إعدادات الطباعة
+========================================= */
 @media print {
-    body { background: white; padding: 0; }
-    .payslip { border: 1px solid #222; }
-    .actions, .login-wrapper, #loadingScreen { display: none !important; }
+    body { 
+        background: #ffffff; 
+        padding: 0; 
+    }
+    .payslip { 
+        border: 1px solid var(--border-color); 
+    }
+    .actions, 
+    .login-wrapper, 
+    #loadingScreen { 
+        display: none !important; 
+    }
 }
