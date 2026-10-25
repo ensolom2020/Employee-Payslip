@@ -261,7 +261,7 @@
             return val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
-        function handleLogin(e) {
+    function handleLogin(e) {
     e.preventDefault();
     const id = document.getElementById("empId").value.trim();
     const pass = document.getElementById("empPassword").value.trim();
@@ -292,7 +292,7 @@
     } else {
         errorMsg.style.display = "block";
     }
-
+    }
         function renderPayslip(d) {
             document.getElementById("slipMonth").innerText = d.month || "";
             document.getElementById("dispId").innerText = d.employeeId || "-";
