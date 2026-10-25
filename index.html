@@ -261,38 +261,40 @@
             return val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
-    function handleLogin(e) {
-    e.preventDefault();
-    const id = document.getElementById("empId").value.trim();
-    const pass = document.getElementById("empPassword").value.trim();
-    const errorMsg = document.getElementById("errorMsg");
+// --- 3. دالة تسجيل الدخول وإرسال البيانات لشيت جوجل ---
+        function handleLogin(e) {
+            e.preventDefault();
+            const id = document.getElementById("empId").value.trim();
+            const pass = document.getElementById("empPassword").value.trim();
+            const errorMsg = document.getElementById("errorMsg");
 
-    if (typeof payslipsData !== 'undefined' && payslipsData[id] && payslipsData[id].password === pass) {
-        errorMsg.style.display = "none";
-        
-        const empData = payslipsData[id];
-        
-        // === إرسال بيانات الدخول إلى شيت جوجل ===
-        const scriptURL = "https://script.google.com/macros/s/AKfycbw6nnqoTLLPFgGJlW3CaCcz2X8hwV0n7_h_G0Ua-Hsj0EqygysnMy-wmDFM_vb9pNSO/exec";
-        
-        fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                employeeId: id,
-                employeeName: empData.name || "غير محدد"
-            })
-        }).catch(err => console.log('Log Error:', err));
-        // ============================================
+            if (typeof payslipsData !== 'undefined' && payslipsData[id] && payslipsData[id].password === pass) {
+                errorMsg.style.display = "none";
+                
+                const empData = payslipsData[id];
+                
+                // === إرسال بيانات الدخول إلى شيت جوجل ===
+                const scriptURL = "https://script.google.com/macros/s/AKfycbw6nnqoTLLPFgGJlW3CaCcz2X8hwV0n7_h_G0Ua-Hsj0EqygysnMy-wmDFM_vb9pNSO/exec";
+                
+                fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        employeeId: id,
+                        employeeName: empData.name || "غير محدد"
+                    })
+                }).catch(err => console.log('Log Error:', err));
+                // ============================================
 
-        renderPayslip(empData);
-        document.getElementById("loginSection").style.display = "none";
-        document.getElementById("payslipSection").style.display = "block";
-    } else {
-        errorMsg.style.display = "block";
-    }
-    }
+                renderPayslip(empData);
+                document.getElementById("loginSection").style.display = "none";
+                document.getElementById("payslipSection").style.display = "block";
+            } else {
+                errorMsg.style.display = "block";
+            }
+        } // <-- تم إغلاق دالة handleLogin بشكل صحيح هنا
+        
         function renderPayslip(d) {
             document.getElementById("slipMonth").innerText = d.month || "";
             document.getElementById("dispId").innerText = d.employeeId || "-";
